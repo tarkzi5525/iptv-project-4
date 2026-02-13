@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUSIPTV - Premium Licensed IPTV Service">
+  <meta property="og:title" content="NEXUSIPTV - Premium IPTV Service">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://nexusiptv.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>NEXUSIPTV - Stream Without Boundaries</title>
+  <style>
+    :root {
+      --rich-black: #0D0D0D;
+      --charcoal: #1A1A1A;
+      --gold: #C9A227;
+      --gold-light: #E8D48A;
+      --white-smoke: #F5F5F5;
+      --muted: #888;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--rich-black);
+      color: var(--white-smoke);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(201,162,39,0.2);
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white-smoke);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .logo span { color: var(--gold); }
+    nav { display: flex; gap: 2.5rem; align-items: center; }
+    nav a {
+      color: rgba(245,245,245,0.7);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.4s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--rich-black);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,162,39,0.3);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white-smoke);
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--rich-black);
+    }
+    main { padding-top: 80px; }
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, rgba(201,162,39,0.05), transparent);
+      border-left: 1px solid rgba(201,162,39,0.1);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 650px; }
+    .hero-eyebrow {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--gold);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(245,245,245,0.6);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      line-height: 1.9;
+    }
+    .hero-buttons { display: flex; gap: 1.5rem; }
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 3rem 0;
+    }
+    section { padding: 7rem 0; }
+    .section-header { text-align: center; margin-bottom: 5rem; }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .section-header p { color: rgba(245,245,245,0.5); max-width: 500px; margin: 0 auto; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+    .feature-card {
+      padding: 3rem 2rem;
+      background: var(--charcoal);
+      border: 1px solid rgba(201,162,39,0.1);
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .feature-card p { color: rgba(245,245,245,0.5); font-size: 0.95rem; }
+    .pricing-section {
+      background: var(--charcoal);
+      padding: 7rem 0;
+      border-top: 1px solid rgba(201,162,39,0.1);
+      border-bottom: 1px solid rgba(201,162,39,0.1);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .pricing-card {
+      background: var(--rich-black);
+      border: 1px solid rgba(245,245,245,0.1);
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+    }
+    .pricing-card:hover {
+      border-color: var(--gold);
+    }
+    .pricing-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, rgba(201,162,39,0.1), transparent);
+    }
+    .pricing-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--rich-black);
+      padding: 0.4rem 1.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+    }
+    .pricing-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin: 1.5rem 0;
+    }
+    .pricing-card .price span { font-size: 1rem; color: rgba(245,245,245,0.4); }
+    .pricing-card .features {
+      list-style: none;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .pricing-card .features li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(245,245,245,0.05);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(245,245,245,0.7);
+    }
+    .pricing-card .features li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: var(--charcoal);
+      padding: 2.5rem;
+      border-left: 2px solid var(--gold);
+    }
+    .testimonial-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: rgba(245,245,245,0.8);
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .author-avatar {
+      width: 45px;
+      height: 45px;
+      background: var(--gold);
+      color: var(--rich-black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .author-name { font-weight: 500; }
+    .author-title { font-size: 0.8rem; color: var(--muted); }
+    .cta-section {
+      background: linear-gradient(180deg, var(--rich-black), var(--charcoal));
+      text-align: center;
+      padding: 8rem 0;
+      border-top: 1px solid rgba(201,162,39,0.1);
+    }
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .cta-section p { color: rgba(245,245,245,0.5); margin-bottom: 2.5rem; }
+    .guarantee {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 3rem;
+      border: 1px solid var(--gold);
+      margin-top: 2rem;
+    }
+    .guarantee-icon { font-size: 2rem; }
+    .guarantee-text { text-align: left; }
+    .guarantee-text strong { display: block; color: var(--gold); }
+    .guarantee-text span { font-size: 0.85rem; color: var(--muted); }
+    footer {
+      background: var(--charcoal);
+      padding: 5rem 0 2rem;
+      border-top: 1px solid rgba(201,162,39,0.1);
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand .logo { margin-bottom: 1.5rem; display: inline-block; }
+    .footer-brand p { color: rgba(245,245,245,0.5); font-size: 0.9rem; line-height: 1.9; }
+    .footer-column h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+    .footer-column ul { list-style: none; }
+    .footer-column li { margin-bottom: 0.75rem; }
+    .footer-column a {
+      color: rgba(245,245,245,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    .footer-column a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,245,245,0.05);
+      padding-top: 2rem;
+      text-align: center;
+      color: rgba(245,245,245,0.3);
+      font-size: 0.8rem;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.75rem;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+      z-index: 999;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    @media (max-width: 1024px) {
+      .hero::before { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero-buttons { flex-direction: column; }
+      .features-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .footer-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">NEXUS<span>IPTV</span></a>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">Premium IPTV Service</div>
+          <h1>Elevate Your <span class="gold-gradient">Entertainment</span></h1>
+          <p>Experience television in its most luxurious form. 15,000+ channels in stunning HD and 4K, delivered with uncompromising quality and elegance.</p>
+          <div class="hero-buttons">
+            <a href="#pricing" class="btn btn-primary">View Plans</a>
+            <a href="#contact" class="btn btn-secondary">Free Trial</a>
+          </div>
+          <div class="divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>The NEXUS <span class="gold-gradient">Difference</span></h2>
+          <p>Uncompromising quality in every frame</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">📺</span>
+            <h3>Extensive Channel Collection</h3>
+            <p>Access over 15,000 channels spanning entertainment, sports, movies, news, and international programming from every corner of the globe.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">✨</span>
+            <h3>4K Ultra HD Excellence</h3>
+            <p>Immerse yourself in breathtaking visual fidelity with HDR support. Every scene comes alive with remarkable clarity and detail.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Seamless Streaming</h3>
+            <p>Our premium server infrastructure eliminates buffering. Enjoy uninterrupted entertainment with 99.9% uptime reliability.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📱</span>
+            <h3>Multi-Screen Viewing</h3>
+            <p>Stream on up to 4 devices simultaneously. Perfect for households where everyone has their own viewing preferences.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📅</span>
+            <h3>Extended Catch-Up</h3>
+            <p>Never miss a moment with 7-30 days of catch-up TV. Watch programs on your schedule, not theirs.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🛡️</span>
+            <h3>Licensed & Secure</h3>
+            <p>Fully compliant IPTV service with proper licensing. Secure, reliable, and worry-free entertainment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Select Your <span class="gold-gradient">Experience</span></h2>
+          <p>Plans designed for the discerning viewer</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Standard</h3>
+            <div class="price">$9<span>/mo</span></div>
+            <ul class="features">
+              <li>HD Quality Streaming</li>
+              <li>1 Device Simultaneous</li>
+              <li>5,000+ Channels</li>
+              <li>Electronic Program Guide</li>
+              <li>Catch-up TV (7 Days)</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">Get Started</a>
+          </div>
+          <div class="pricing-card featured">
+            <h3>Premium</h3>
+            <div class="price">$14<span>/mo</span></div>
+            <ul class="features">
+              <li>Full HD + 4K Support</li>
+              <li>2 Devices Simultaneous</li>
+              <li>10,000+ Channels</li>
+              <li>Extended EPG (14 Days)</li>
+              <li>Priority Support</li>
+            </ul>
+            <a href="#" class="btn btn-primary">Get Started</a>
+          </div>
+          <div class="pricing-card">
+            <h3>Ultra</h3>
+            <div class="price">$19<span>/mo</span></div>
+            <ul class="features">
+              <li>4K UHD + HDR Support</li>
+              <li>4 Devices Simultaneous</li>
+              <li>15,000+ Channels</li>
+              <li>Full EPG (30 Days)</li>
+              <li>Cloud DVR (50 Hours)</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>Client <span class="gold-gradient">Testimonials</span></h2>
+          <p>What our distinguished viewers say</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p>"The quality is unmatched. Crystal clear 4K streams that transform my living room into a cinema."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JD</div>
+              <div>
+                <div class="author-name">John D.</div>
+                <div class="author-title">Premium User</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>"Finally, an IPTV service that delivers on its promises. Setup was effortless, quality is exceptional."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SM</div>
+              <div>
+                <div class="author-name">Sarah M.</div>
+                <div class="author-title">Standard User</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>"Worth every penny. The channel selection and streaming quality justify the investment completely."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MK</div>
+              <div>
+                <div class="author-name">Mike K.</div>
+                <div class="author-title">Ultra User</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+      <div class="container">
+        <h2>Begin Your <span class="gold-gradient">Journey</span></h2>
+        <p>Experience television as it was meant to be watched</p>
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+        <div class="guarantee">
+          <div class="guarantee-icon">🛡️</div>
+          <div class="guarantee-text">
+            <strong>7-Day Money-Back Guarantee</strong>
+            <span>Experience risk-free with full refund within 7 days</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="logo">NEXUS<span>IPTV</span></a>
+          <p>Premium licensed IPTV service delivering unparalleled entertainment in HD and 4K quality.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Devices</a></li>
+            <li><a href="#">Guides</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Setup Guides</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Refund</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 NEXUSIPTV. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="whatsapp-float">💬</a>
+</body>
+</html>
